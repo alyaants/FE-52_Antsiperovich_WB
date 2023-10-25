@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./scss/index.scss" />
+    <title>Wildberries</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-wrap">
+          <div class="logo">Wildberries</div>
+          <div class="search">
+            <input type="text" placeholder="Поиск..." />
+          </div>
+          <div class="cart">
+            <button id="cart">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <!-- <span>Корзина</span> -->
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="promo">
+      <div class="container">
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <div class="image-slider__slide swiper-slide">
+                <div class="image-slider__image">
+                  <img
+                    src="./img/88d388223fdfc49cc49071f967bbd055.png" alt="#">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-slider__slide swiper-slide">
+                <div class="image-slider__image">
+                  <img
+                    src="./img/22c26a12dfc10b1328136ad44c659b05.png" alt="#">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-slider__slide swiper-slide">
+                <div class="image-slider__image">
+                  <img
+                    src="./img/ab68edbbda2b65fa1be5560ab5b3e6ee.png" alt="#">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-slider__slide swiper-slide">
+                <div class="image-slider__image">
+                  <img
+                    src="./img/b53f4711f80afe6c998f97a55ad1c957.png" alt="#">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        <div class="products-wrap"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-wrap">Все права защищены</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

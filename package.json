@@ -1,0 +1,23 @@
+{
+  "name": "fe-52_antsiperovich_wb",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "json-server": "^0.17.4",
+    "parcel": "^2.9.3",
+    "path": "^0.12.7",
+    "sass": "^1.68.0"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "swiper": "^11.0.1"
+  }
+}
