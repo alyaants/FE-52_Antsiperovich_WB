@@ -1,80 +1,59 @@
-// const images = document.querySelectorAll('.container .promo-wrap .slider img');
-// const slider = document.querySelector('.slider');
-// // const pagination = document.querySelector('.pagination');
+import './slider'
 
-// let count = 0;
-// let width;
-// // const pagination = [];
+async function createProductCards() {
+  const response = await fetch('https://653b9efd2e42fd0d54d56a5c.mockapi.io/cards');
+  const data = await response.json();
+  const productsWrap = document.querySelector('.products-wrap');
 
-// function init(){
-//     console.log('reside');
-//     width = document.querySelector('.container').offsetWidth;
-//     slider.style.width = width*images.length + 'px';
-//     images.forEach( item => {
-//         item.style.width = width + 'px';
-//         item.style.height = 'auto';
-//     });
-//     rollSlider();
-// }
+  data.forEach((card) => {
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('product__item');
 
-// window.addEventListener('resize', init);
-// init();
+    const imageElement = document.createElement('div');
+    imageElement.classList.add('product-img');
+    cardElement.appendChild(imageElement);
+    const img = document.createElement('img');
+    img.src = card.img;
+    imageElement.appendChild(img);
+    const productDescr = document.createElement('div');
+    productDescr.classList.add('product-descr');
+    cardElement.appendChild(productDescr); 
 
-// // const pagination = [];
 
-// // function createPaginationDost(){
-// //     const div = document.createElement('div');
-// //     div.className = "pagination";
-// //     button.appenChild(div);
-// //     pagination.push(div)
-// // }
-// // function addPagination(){
-// //     // slider.forEach(createPaginationDost);
-// //     pagination[0].classList.add("active");
-// //     console.log(pagination);
-// // }
-// // addPagination();
+    const price = document.createElement('div');
+    price.classList.add('price');
+    productDescr.appendChild(price);
 
-// document.querySelector('.slider-prev').addEventListener('click', function(){
-//     count--;
-//     if (count < 0) {
-//         count = images.length - 1;
-//     }
-//     rollSlider();
-// });
 
-// document.querySelector('.slider-next').addEventListener('click', function(){
-//     count++;
-//     if (count >= images.length) {
-//         count = 0;
-//     }
-//     rollSlider();
-// });
+    const priceElement = document.createElement('span');
+    price.appendChild(priceElement);
+    priceElement.textContent = `${card.price} BYN`;
 
-// function rollSlider(){
-//     slider.style.transform = 'translate(-'+ count * width + 'px)';
-// }
 
-new Swiper(".swiper", {
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  loop: true,
-  // Navigation arrows
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  // Настройка плавности переключения
-  speed: 800, // Продолжительность анимации в миллисекундах
-  effect: 'fade', // Эффект перехода (например, 'fade', 'slide', 'cube', и другие)
-  fadeEffect: {
-    crossFade: true // Плавное переключение слайдов
-  },
-  // And if we need scrollbar
-  scrollbar: {
-    el: ".swiper-scrollbar",
-  },
-});
+    const productName = document.createElement('div');
+    productName.classList.add('product-name');
+    productDescr.appendChild(productName);
+    const nameElement = document.createElement('span');
+    nameElement.textContent = card.name;
+    productName.appendChild(nameElement);
+
+
+    const firm = document.createElement('div');
+    firm.classList.add('firm');
+    productDescr.appendChild(firm);
+    const firmElement = document.createElement('p');
+    firmElement.textContent = `${card.firm}`;
+    firm.appendChild(firmElement);
+
+    const addButton = document.createElement('button');
+    addButton.textContent = 'В корзину';
+    addButton.addEventListener('click', () => {
+      // Добавить логику для добавления товара в корзину
+    });
+    cardElement.appendChild(addButton);
+
+    productsWrap.appendChild(cardElement);
+  });
+}
+
+createProductCards();

@@ -5,12 +5,14 @@
     rgba(191, 40, 223, 1) 30%,
     rgba(127, 10, 166, 1) 98%
   );
+  position: relative;
   .footer-wrap {
     position: absolute;
     text-align: center;
-    padding: 35px 0;
-    bottom: 0;
-    left: 0;
+    padding: 25px 0;
+    color: white;
+    // bottom: 0;
+    // left: 0;
     background: linear-gradient(
       90deg,
       rgb(211, 40, 194) 5%,
