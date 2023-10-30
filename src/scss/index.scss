@@ -2,7 +2,9 @@
 @import url(./header.scss);
 @import url(./promo.scss);
 @import url(./products.scss);
+@import url(./cart.scss);
 @import url(./footer.scss);
+@import url(./viewWindow.scss);
 
 * {
   padding: 0;
@@ -14,11 +16,12 @@
 
 html {
   font-family: "Montserrat", sans-serif, serif;
-  background: #ffffff;
+  background: rgb(255, 254, 254);
 }
 
 .container {
   max-width: 1400px;
   margin: auto;
   padding: 0 20px;
+  position: relative;
 }

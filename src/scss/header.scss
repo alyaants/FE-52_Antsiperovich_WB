@@ -22,13 +22,40 @@
     color: white;
   }
   .search {
+    // width: calc(100% + 8px);
+    width: 980px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: start;
+
+    button{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50px;
+      height: 60px;
+      padding: 0 20px; /* Регулируйте отступы, чтобы кнопка была видна */
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: purple;
+    }
     input {
-      width: 900px;
+      width: calc(100% + 50px);
       height: 60px;
       font-size: 24px;
       border-radius: 50px;
       padding: 0 15px;
-    }
+      padding: 0 20px 0 60px;
+      outline: none;
+      font-family: "Montserrat";
+      font-weight: 600;   
+      border: none; 
+    }   
+
   }
   .cart {
     #cart {

@@ -11,10 +11,13 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
+    "assert": "^2.1.0",
+    "console-browserify": "^1.2.0",
     "json-server": "^0.17.4",
     "parcel": "^2.9.3",
     "path": "^0.12.7",
-    "sass": "^1.68.0"
+    "sass": "^1.68.0",
+    "util": "^0.12.5"
   },
   "dependencies": {
     "jquery": "^3.7.1",
