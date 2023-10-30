@@ -60,6 +60,28 @@ async function createProductCards() {
     const img = document.createElement("img");
     img.src = card.img;
     imageElement.appendChild(img);
+
+    const more = document.createElement('button');
+    more.classList.add('btn-more');
+    more.innerHTML = "Быстрый просмотр";
+    imageElement.appendChild(more);
+    
+    more.addEventListener('click', fastView);
+    
+    function fastView(){
+      const viewWindow = document.createElement('div');
+      document.body.appendChild(viewWindow);
+      viewWindow.classList.add('viewWindow');
+
+      const prodImg = document.createElement('div');
+      prodImg.classList.add('prodImg');
+      viewWindow.appendChild(prodImg);
+
+      viewWindow.style.display = 'block';
+    }
+    
+
+
     const productDescr = document.createElement("div");
     productDescr.classList.add("product-descr");
     cardElement.appendChild(productDescr);
@@ -129,22 +151,7 @@ async function createProductCards() {
 //   }
 //   setLS()
 
-// function fastView(){
-//   const viewWindow = document.createElement('div');
-//   document.body.appendChild(viewWindow);
-//   viewWindow.classList.add('viewWindow')
 
-//   const prodImg = document.createElement('div');
-//   prodImg.classList.add('prodImg');
-
-//   const image = document.createElement('img');
-//   viewWindow.appendChild('prodImg');
-
-// image.setAttribute('src', './');
-// image.setAttribute('alt');
-
-// }
-// fastView()
 
 const inputSearch = document.querySelector("input");
 inputSearch.addEventListener("input", search);
@@ -154,15 +161,18 @@ function search() {
   const products = document.querySelectorAll(".product__item");
 
   products.forEach((product) => {
-    const searchTitle = product.querySelector(".product-name-span").textContent.toLowerCase();
-    console.log(searchTitle);
-    const searchFirm = product.querySelector(".firm-name").textContent.toLowerCase();
+    const searchTitle = product
+      .querySelector(".product-name-span")
+      .textContent.toLowerCase();
+    const searchFirm = product
+      .querySelector(".firm-name")
+      .textContent.toLowerCase();
 
     if (searchTitle.includes(input) || searchFirm.includes(input)) {
       product.style.display = "block";
     } else {
       product.style.display = "none";
     }
-
   });
 }
+
