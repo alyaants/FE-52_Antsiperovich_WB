@@ -61,26 +61,12 @@ async function createProductCards() {
     img.src = card.img;
     imageElement.appendChild(img);
 
-    const more = document.createElement('button');
-    more.classList.add('btn-more');
+    const more = document.createElement("button");
+    more.classList.add("btn-more");
     more.innerHTML = "Быстрый просмотр";
     imageElement.appendChild(more);
-    
-    more.addEventListener('click', fastView);
-    
-    function fastView(){
-      const viewWindow = document.createElement('div');
-      document.body.appendChild(viewWindow);
-      viewWindow.classList.add('viewWindow');
 
-      const prodImg = document.createElement('div');
-      prodImg.classList.add('prodImg');
-      viewWindow.appendChild(prodImg);
-
-      viewWindow.style.display = 'block';
-    }
-    
-
+    more.addEventListener("click", fastView);
 
     const productDescr = document.createElement("div");
     productDescr.classList.add("product-descr");
@@ -128,13 +114,68 @@ async function createProductCards() {
     cardElement.appendChild(addButton);
 
     productsWrap.appendChild(cardElement);
-  });
 
-  // return {
-  //   firm,
-  //   name,
-  //   price
-  // }
+    function fastView() {
+      const viewWindow = document.createElement("div");
+      document.body.appendChild(viewWindow);
+      viewWindow.classList.add("viewWindow");
+
+      const btnWrap = document.createElement("div");
+      btnWrap.classList.add("btnWrap");
+      const btnClose = document.createElement("button");
+      btnClose.classList.add("btnClose");
+      btnClose.innerHTML = "✖";
+      viewWindow.appendChild(btnWrap);
+      btnWrap.appendChild(btnClose);
+
+      btnClose.addEventListener("click", () => {
+        viewWindow.style.display = "none";
+      });
+
+      const windowWrap = document.createElement("div");
+      windowWrap.classList.add("windowWrap");
+      viewWindow.appendChild(windowWrap);
+
+      const prodImgWrap = document.createElement("div");
+      prodImgWrap.classList.add("prodImgWrap");
+      const prodImg = img;
+      prodImg.classList.add("prodImg");
+
+      windowWrap.appendChild(prodImgWrap);
+      prodImgWrap.appendChild(prodImg);
+
+      const descrWrap = document.createElement("div");
+      descrWrap.classList.add("descrWrap");
+      const detales = document.createElement("div");
+      detales.classList.add("detales");
+      const prodTitle = productName;
+      prodTitle.classList.add("prodTitle");
+      const prodFirm = firm;
+      prodFirm.classList.add("prodFirm");
+      const prodPrice = priceNew;
+      prodPrice.classList.add("prodPrice");
+
+      windowWrap.appendChild(descrWrap);
+      descrWrap.appendChild(detales);
+      detales.appendChild(prodTitle);
+      detales.appendChild(prodFirm);
+      detales.appendChild(prodPrice);
+
+      const buttons = document.createElement("div");
+      buttons.classList.add("buttons");
+      const buttAdd = addButton;
+      buttAdd.classList.add("buttAdd");
+      const buttMore = document.createElement("button");
+      buttMore.innerHTML = "Подробнее";
+      buttMore.classList.add("button-more");
+
+      descrWrap.appendChild(buttons);
+      buttons.appendChild(buttAdd);
+      buttons.appendChild(buttMore);
+
+      viewWindow.style.display = "block";
+    }
+  });
 }
 
 // function setLS (name, price, firm){
@@ -150,8 +191,6 @@ async function createProductCards() {
 //   localStorage.setItem('cards', JSON.stringify(cards));
 //   }
 //   setLS()
-
-
 
 const inputSearch = document.querySelector("input");
 inputSearch.addEventListener("input", search);
@@ -175,4 +214,3 @@ function search() {
     }
   });
 }
-

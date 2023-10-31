@@ -1,26 +1,104 @@
-.viewWindow{
-    background-color: rgb(219, 219, 219);
-  border: 10px solid purple;
+.viewWindow {
+  background-color: rgb(219, 219, 219);
+  border: 4px solid purple;
   top: 50%;
   left: 50%;
-  width: 50%;
+  width: 70%;
   display: none;
-//   height: 800px;
   z-index: 666;
   position: fixed;
   border-radius: 20px;
   transform: translate(-50%, -50%);
   height: 80vh;
+  overflow: hidden;
 
-  .prodImg{
-    width: 50%;
-    height: 100%;
+  .btnWrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .btnClose {
+      width: 50px;
+      height: 50px;
+      font-size: 28px;
+      border: none;
+      color: purple;
+      background-color: inherit;
+      overflow: hidden;
+    }
+  }
+
+  .windowWrap {
+    display: flex;
     overflow: hidden;
 
-    img{
+    .prodImgWrap {
+      width: 50%;
+      height: 80vh;
+      overflow: hidden;
+
+      .prodImg {
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+    }
+
+    .descrWrap {
+      width: 35%;
+      height: 100%;
+      padding: 28px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .detales {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 480px;
+        .prodTitle {
+          font-size: 26px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+        .prodFirm {
+          font-size: 20px;
+          font-weight: 400;
+          margin-bottom: 50px;
+        }
+        .prodPrice {
+          font-size: 36px;
+          font-weight: 600;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 30px;
+        button {
+          height: 50px;
+          width: 210px;
+          text-align: center;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: 600;
+          color: white;
+          border-color: inherit;
+          border: none;
+          border-radius: 10px;
+          background: linear-gradient(
+            90deg,
+            rgb(210, 40, 193) 5%,
+            rgba(191, 40, 223, 1) 30%,
+            rgba(127, 10, 166, 1) 98%
+          );
+        }
+
+        .button-more {
+          background: rgba(139, 139, 139, 0.442);
+          color: rgb(210, 40, 193);
+        }
+      }
     }
   }
 }
