@@ -60,13 +60,12 @@ async function createProductCards() {
     const img = document.createElement("img");
     img.src = card.img;
     imageElement.appendChild(img);
+    img.id = "prodImg";
 
     const more = document.createElement("button");
     more.classList.add("btn-more");
     more.innerHTML = "Быстрый просмотр";
     imageElement.appendChild(more);
-
-    more.addEventListener("click", fastView);
 
     const productDescr = document.createElement("div");
     productDescr.classList.add("product-descr");
@@ -80,6 +79,7 @@ async function createProductCards() {
     priceNew.classList.add("price_new");
     price.appendChild(priceNew);
     priceNew.textContent = `${card.price} BYN`;
+    priceNew.id = "priceNew";
 
     const priceOld = document.createElement("span");
     priceOld.classList.add("price_old");
@@ -93,6 +93,7 @@ async function createProductCards() {
     nameElement.className = "product-name-span";
     nameElement.textContent = card.name;
     productName.appendChild(nameElement);
+    nameElement.id = "productName";
 
     const firm = document.createElement("div");
     firm.classList.add("firm");
@@ -101,96 +102,91 @@ async function createProductCards() {
     firmElement.className = "firm-name";
     firmElement.textContent = `${card.firm}`;
     firm.appendChild(firmElement);
+    firmElement.id = "productFirm";
 
     const addButton = document.createElement("button");
     addButton.textContent = "В корзину";
     addButton.addEventListener("click", () => {
       console.log("hello");
 
-      //   setLS(nameProd, description, priceProd, imgSrc);
-      // showCartFromLocalStorage();
+
     });
 
     cardElement.appendChild(addButton);
-
     productsWrap.appendChild(cardElement);
-
-    function fastView() {
-      const viewWindow = document.createElement("div");
-      document.body.appendChild(viewWindow);
-      viewWindow.classList.add("viewWindow");
-
-      const btnWrap = document.createElement("div");
-      btnWrap.classList.add("btnWrap");
-      const btnClose = document.createElement("button");
-      btnClose.classList.add("btnClose");
-      btnClose.innerHTML = "✖";
-      viewWindow.appendChild(btnWrap);
-      btnWrap.appendChild(btnClose);
-
-      btnClose.addEventListener("click", () => {
-        viewWindow.style.display = "none";
-      });
-
-      const windowWrap = document.createElement("div");
-      windowWrap.classList.add("windowWrap");
-      viewWindow.appendChild(windowWrap);
-
-      const prodImgWrap = document.createElement("div");
-      prodImgWrap.classList.add("prodImgWrap");
-      const prodImg = img;
-      prodImg.classList.add("prodImg");
-
-      windowWrap.appendChild(prodImgWrap);
-      prodImgWrap.appendChild(prodImg);
-
-      const descrWrap = document.createElement("div");
-      descrWrap.classList.add("descrWrap");
-      const detales = document.createElement("div");
-      detales.classList.add("detales");
-      const prodTitle = productName;
-      prodTitle.classList.add("prodTitle");
-      const prodFirm = firm;
-      prodFirm.classList.add("prodFirm");
-      const prodPrice = priceNew;
-      prodPrice.classList.add("prodPrice");
-
-      windowWrap.appendChild(descrWrap);
-      descrWrap.appendChild(detales);
-      detales.appendChild(prodTitle);
-      detales.appendChild(prodFirm);
-      detales.appendChild(prodPrice);
-
-      const buttons = document.createElement("div");
-      buttons.classList.add("buttons");
-      const buttAdd = addButton;
-      buttAdd.classList.add("buttAdd");
-      const buttMore = document.createElement("button");
-      buttMore.innerHTML = "Подробнее";
-      buttMore.classList.add("button-more");
-
-      descrWrap.appendChild(buttons);
-      buttons.appendChild(buttAdd);
-      buttons.appendChild(buttMore);
-
-      viewWindow.style.display = "block";
-    }
   });
+
+  const moreButtons = document.querySelectorAll(".btn-more");
+  moreButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      openModalWithData(data[index]);
+    });
+  });
+
+  const viewWindow = document.createElement("div");
+  viewWindow.className = "viewWindow";
+
+  const btnWrap = document.createElement("div");
+  btnWrap.classList.add("btnWrap");
+  const btnClose = document.createElement("button");
+  btnClose.classList.add("btnClose");
+  btnClose.innerHTML = "✖";
+  btnClose.id = "btnClose";
+  viewWindow.innerHTML = `
+    <div class="windowWrap">
+      <div class="prodImgWrap">
+        <img id="modalImage" class ="prodImg" src="" alt="">
+      </div>
+      <div class="descrWrap">
+        <div class="detales">
+          <p id="modalNameElement" class="prodTitle"></p>
+          <p id="modalFirmElement" class="prodFirm"></p>
+          <span id="modalPriceNew" class="prodPrice"></span>
+        </div>
+        <div class="buttons">
+          <button id="modalAdd" class="addCart"></button>
+          <button id="modalMore" class="button-more"></button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(viewWindow);
+  viewWindow.appendChild(btnWrap);
+  btnWrap.appendChild(btnClose);
+
+  function openModalWithData(cardData) {
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+    document.body.appendChild(overlay);
+
+    const modalImage = document.getElementById("modalImage");
+    const modalPriceNew = document.getElementById("modalPriceNew");
+    const modalFirmElement = document.getElementById("modalFirmElement");
+    const modalNameElement = document.getElementById("modalNameElement");
+
+    modalImage.src = cardData.img;
+    modalNameElement.textContent = cardData.name;
+    modalPriceNew.textContent = `${cardData.price} BYN`;
+    modalFirmElement.textContent = `${cardData.firm}`;
+
+    const modalAdd = document.getElementById("modalAdd");
+    const modalMore = document.getElementById("modalMore");
+    modalAdd.innerHTML = "В корзину";
+    modalMore.innerHTML = "Подробнее";
+
+    viewWindow.style.display = "block";
+    overlay.style.display = "block";
+    overlay.style.position = "fixed";
+
+    const closeModalButton = document.getElementById("btnClose");
+    closeModalButton.addEventListener("click", () => {
+      viewWindow.style.display = "none";
+      overlay.style.display = "none";
+    overlay.style.position = "none";
+
+    });
+  }
 }
-
-// function setLS (name, price, firm){
-//   const card = {
-//       'title': name ,
-//       'price': price,
-//       'firm': firm
-//     };
-
-//   let cards = localStorage.getItem("cards") ? JSON.parse(localStorage.getItem("cards")) : [];
-//   cards.push(card);
-
-//   localStorage.setItem('cards', JSON.stringify(cards));
-//   }
-//   setLS()
 
 const inputSearch = document.querySelector("input");
 inputSearch.addEventListener("input", search);

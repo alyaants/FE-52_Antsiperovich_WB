@@ -14,9 +14,9 @@ new Swiper(".swiper", {
   speed: 800,
   effect: 'slide',
 
-
-
-
+  autoplay: {
+    delay: 4000, // Задержка между сменой слайдов (5 секунд)
+  },
 
   // fadeEffect: {
   //   crossFade: true // Плавное переключение слайдов
