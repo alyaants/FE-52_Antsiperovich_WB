@@ -1,47 +1,5 @@
 import "./slider";
 
-createProductCards();
-
-const cart = document.getElementById("cart");
-cart.addEventListener("click", () => {
-  createCart();
-});
-
-function createCart() {
-  const cartWrap = document.createElement("div");
-  cartWrap.classList.add("cart-wrap");
-  cartWrap.style.display = "block";
-  document.body.appendChild(cartWrap);
-
-  const cartHeader = document.createElement("div");
-  cartHeader.classList.add("cartHeader");
-  cartWrap.appendChild(cartHeader);
-
-  const titleCart = document.createElement("span");
-  titleCart.classList.add("titleCart");
-  titleCart.textContent = "Корзина";
-  cartHeader.appendChild(titleCart);
-
-  const closeButton = document.createElement("button");
-  closeButton.classList.add("closeButton");
-  closeButton.innerText = "✖";
-  cartHeader.appendChild(closeButton);
-
-  const cartList = document.createElement("ul");
-  cartWrap.appendChild(cartList);
-
-  const cartItem = document.createElement("li");
-  cartList.appendChild(cartItem);
-
-  const total = document.createElement("span");
-  total.innerText = "Итого: ";
-  cartWrap.appendChild(total);
-
-  closeButton.addEventListener("click", function () {
-    cartWrap.style.display = "none";
-  });
-}
-
 async function createProductCards() {
   const response = await fetch(
     "https://653b9efd2e42fd0d54d56a5c.mockapi.io/cards"
@@ -105,11 +63,22 @@ async function createProductCards() {
     firmElement.id = "productFirm";
 
     const addButton = document.createElement("button");
+    addButton.classList.add('addButton')
     addButton.textContent = "В корзину";
     addButton.addEventListener("click", () => {
-      console.log("hello");
-
-
+      // Создаем объект для товара, который добавляем в корзину
+      const item = {
+        id: card.id, // Уникальный идентификатор товара
+        name: card.name,
+        price: card.price,
+        img: card.img,
+      };
+    
+      // Добавляем товар в корзину
+      cart.push(item);
+    
+      // Сохраняем корзину в локальном хранилище (localStorage)
+      localStorage.setItem("cart", JSON.stringify(cart));
     });
 
     cardElement.appendChild(addButton);
@@ -176,17 +145,18 @@ async function createProductCards() {
 
     viewWindow.style.display = "block";
     overlay.style.display = "block";
-    overlay.style.position = "fixed";
 
     const closeModalButton = document.getElementById("btnClose");
     closeModalButton.addEventListener("click", () => {
       viewWindow.style.display = "none";
       overlay.style.display = "none";
-    overlay.style.position = "none";
 
     });
   }
 }
+createProductCards();
+
+
 
 const inputSearch = document.querySelector("input");
 inputSearch.addEventListener("input", search);
@@ -210,3 +180,4 @@ function search() {
     }
   });
 }
+
