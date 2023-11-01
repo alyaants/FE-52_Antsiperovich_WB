@@ -27,9 +27,8 @@
       transition: 0.2s;
       color: gray;
 
-      &:hover{
+      &:hover {
         color: purple;
-
       }
     }
   }
@@ -82,34 +81,34 @@
 
       .buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
         padding-top: 30px;
-        button {
+        .button-more {
+          background: rgba(139, 139, 139, 0.442);
+          color: rgb(210, 40, 193);
           height: 50px;
           width: 210px;
           text-align: center;
           cursor: pointer;
           font-size: 18px;
           font-weight: 600;
-          color: white;
           border-color: inherit;
           border: none;
           border-radius: 10px;
-          transition: 0.3s;
-          background: linear-gradient(
-            90deg,
-            rgb(210, 40, 193) 5%,
-            rgba(191, 40, 223, 1) 30%,
-            rgba(127, 10, 166, 1) 98%
-          );
+          margin-right: 15px;
         }
-
-        .button-more {
-          background: rgba(139, 139, 139, 0.442);
-          color: rgb(210, 40, 193);
+        .like {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          transition: 0.3s;
+          cursor: pointer;
+          font-size: 30px;
+          color: rgb(255, 255, 255);
+          border: 1px solid rgb(230, 98, 216);
+          background-color: rgb(230, 98, 216);
         }
       }
     }
   }
 }
-
