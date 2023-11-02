@@ -1,3 +1,7 @@
+.products-title{
+  font-size: 26px;
+}
+
 .products-wrap {
   display: grid;
   grid-auto-rows: auto;
@@ -6,6 +10,13 @@
   max-width: 100%;
   padding: 30px 0 150px;
   min-height: 58vh;
+
+  @media (max-width: 1329px) {
+      grid-template-columns: repeat(4, 1fr); /* 2 грида в ряду на маленьких экранах */
+  }
+  @media (max-width: 1060px) {
+    grid-template-columns: repeat(3, 1fr); /* 2 грида в ряду на маленьких экранах */
+}
 
   .product__item {
     position: relative;

@@ -59,11 +59,13 @@ closeButton.addEventListener("click", () => {
   isCartOpen = false;
 });
 
+// удаление товаров в корзине и сумма
 function displayCart() {
   const cartData = JSON.parse(localStorage.getItem("cart"));
   const cartList = document.querySelector(".listUl");
 
   cartList.innerHTML = "";
+
   let totalAmount = 0;
 
   if (cartData && cartData.length > 0) {
@@ -97,7 +99,7 @@ function displayCart() {
     emptyCartMessage.textContent = "Корзина пуста";
     cartList.appendChild(emptyCartMessage);
 
-    // обнуление суммы, если корзина пуста
+
     const total = document.querySelector(".total");
     total.textContent = "Итого: 0 BYN";
   }
@@ -106,9 +108,7 @@ displayCart();
 
 // создание карточек товаров
 async function createProductCards() {
-  const response = await fetch(
-    "https://653b9efd2e42fd0d54d56a5c.mockapi.io/cards"
-  );
+  const response = await fetch("https://653b9efd2e42fd0d54d56a5c.mockapi.io/cards");
   const data = await response.json();
 
   const productsWrap = document.querySelector(".products-wrap");
@@ -226,6 +226,8 @@ async function createProductCards() {
   viewWindow.appendChild(btnWrap);
   btnWrap.appendChild(btnClose);
 
+  
+  // модальное окно
   function openModalWithData(cardData) {
     const overlay = document.createElement("div");
     overlay.className = "overlay";

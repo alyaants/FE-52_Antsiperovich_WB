@@ -8,6 +8,7 @@
     );
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+    
   }
 }
 .header-wrap {
@@ -22,7 +23,6 @@
     color: white;
   }
   .search {
-    // width: calc(100% + 8px);
     width: 980px;
     position: relative;
     background-color: #fff;
@@ -73,6 +73,10 @@
         font-size: 40px;
         margin: auto;
         color: #fff;
+        transition: 0.3s;
+        &:hover{
+          color: rgb(245, 165, 245);
+        }
       }
     }
   }
